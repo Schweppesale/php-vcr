@@ -226,6 +226,22 @@ class CurlHook implements LibraryHook
     }
 
     /**
+     * Add a normal cURL handle to a cURL multi handle.
+     *
+     * @link http://www.php.net/manual/en/function.curl-multi-add-handle.php
+     * @param resource $multiHandle A cURL multi handle returned by curl_multi_init().
+     * @param resource $curlHandle  A cURL handle returned by curl_init().
+     */
+    public static function curlMultiGetcontent($curlHandle)
+    {
+        if($response = self::$responses[(int) $curlHandle]) {
+            return $response;
+        }
+
+        return false;
+    }
+
+    /**
      * Remove a multi handle from a set of cURL handles.
      *
      * @link http://www.php.net/manual/en/function.curl-multi-remove-handle.php
