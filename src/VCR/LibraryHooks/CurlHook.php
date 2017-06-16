@@ -234,11 +234,11 @@ class CurlHook implements LibraryHook
      */
     public static function curlMultiGetcontent($curlHandle)
     {
-        if($response = self::$responses[(int) $curlHandle]) {
-            return $response;
-        }
-
-        return false;
+        return CurlHelper::handleOutput(
+            self::$responses[(int) $curlHandle],
+            self::$curlOptions[(int) $curlHandle],
+            $curlHandle
+        );
     }
 
     /**
